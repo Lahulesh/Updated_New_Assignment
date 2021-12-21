@@ -1,0 +1,89 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                <h4>SOCIETY BILLING SOFTWARE</h4>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="Home.aspx">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vendors.aspx">Vendors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="assetlist.aspx">Asset List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="newasset.aspx">New Asset</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="report.aspx">Report</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <form id="form1" runat="server">
+        <h1>New Asset Forms</h1>
+        <asp:Label ID="Label1" runat="server" Text="Asset ID"></asp:Label>
+        <asp:TextBox ID="newassetid" runat="server"></asp:TextBox><br />
+
+        <asp:Label ID="Label2" runat="server" Text="Asset Name"></asp:Label>
+        <asp:TextBox ID="newassetname" runat="server"></asp:TextBox><br />
+
+        <asp:Label ID="Label3" runat="server" Text="Vendor Name"></asp:Label>
+        <asp:TextBox ID="newassetvendor" runat="server"></asp:TextBox><br />
+
+        <asp:Label ID="Label4" runat="server" Text="Purchase Date"></asp:Label>
+        <asp:TextBox ID="newassetpurchase" runat="server" type="date"></asp:TextBox><br />
+
+        <asp:Label ID="Label5" runat="server" Text="Cost"></asp:Label>
+        <asp:TextBox ID="newassetcost" runat="server"></asp:TextBox><br />
+
+        <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+        <br />
+        <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+    </form>
+
+create table City
+(
+CityId int identity primary key,
+CityName varchar(100),
+)
+
+create table Vendor
+(
+VendorId int identity primary key,
+VendorName varchar(100)UNIQUE,
+VendorEmail varchar(100),
+VendorContact bigint,
+CityId int foreign key references City(CityId)
+)
+create table Asset
+(
+AssetID int identity primary key,
+AssetName varchar(100) UNIQUE,
+VendorName varchar(100),
+PurchaseDate date,
+Cost bigint
+)
+
+select * from City;
+select * from Vendor;
+select * from Asset;
+
+INSERT INTO City VALUES ('Mumbai');
+INSERT INTO City VALUES ('Delhi');
+INSERT INTO City VALUES ('Pune');
+INSERT INTO City VALUES ('Kolkata');
+
+
+INSERT INTO Vendor VALUES ('Aniket','aniket@gmail.com',7894584857,4);
